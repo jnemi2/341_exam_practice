@@ -1,16 +1,17 @@
-print("Hello, world!")
 
 
-def filter_numbers(text):
-    aux = []
-    for word in text.split(" "):
-        try:
-            aux.append(float(word))
-        except ValueError:
-            continue
-    return aux
+def iterative_series(n):
+    result = 0
+    for i in range(1, n+1):
+        result += i / (i+1)
+    return result
 
 
-print(filter_numbers("Sin despreciar 13.23 mal vio honestidad envidiaron suspirando435.5. Me alfombra arrojo bronce "
-                     "lo seguia. El cafe es cuna 3 onda. Si 3.2sacar no ya busca dogma sento. "
-                     "Cuarto volado graves iba han. 54.34 tanto"))
+def recursive_series(n):
+    if n <= 0:
+        return 0
+    return (n / (n+1)) + recursive_series(n-1)
+
+print(iterative_series(1), recursive_series(1))
+print(iterative_series(5), recursive_series(5))
+print(iterative_series(7), recursive_series(7))
