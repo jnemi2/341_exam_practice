@@ -1,16 +1,12 @@
-print("Hello, world!")
 
 
-def filter_numbers(text):
+def filter_odds(number_list):
     aux = []
-    for word in text.split(" "):
-        try:
-            aux.append(float(word))
-        except ValueError:
-            continue
+    for n in number_list:
+        if n%2 == 1 and n not in aux:
+            aux.append(n)
+    aux.sort()
     return aux
 
 
-print(filter_numbers("Sin despreciar 13.23 mal vio honestidad envidiaron suspirando435.5. Me alfombra arrojo bronce "
-                     "lo seguia. El cafe es cuna 3 onda. Si 3.2sacar no ya busca dogma sento. "
-                     "Cuarto volado graves iba han. 54.34 tanto"))
+print(filter_odds([1,7,7,75,2,8,10,4,3,7,77]))
