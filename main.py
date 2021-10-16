@@ -1,16 +1,27 @@
-print("Hello, world!")
+import datetime
 
 
-def filter_numbers(text):
-    aux = []
-    for word in text.split(" "):
-        try:
-            aux.append(float(word))
-        except ValueError:
-            continue
-    return aux
+def load_products():
+    products = []
+    file = open("productos.txt", "rt")
+    line = file.readline().strip().split(", ")
+    while len(line) > 0:
+        new_dict = {}
+        new_dict.setdefault('id', int(line[0]))
+        new_dict.setdefault('descripcion', line[1][1:-1])
+        new_dict.setdefault('precio', float(line[2]))
+        products.append(new_dict)
+        line = file.readline().strip().split(", ")
+    file.close()
+    return products
 
 
-print(filter_numbers("Sin despreciar 13.23 mal vio honestidad envidiaron suspirando435.5. Me alfombra arrojo bronce "
-                     "lo seguia. El cafe es cuna 3 onda. Si 3.2sacar no ya busca dogma sento. "
-                     "Cuarto volado graves iba han. 54.34 tanto"))
+def get_price(product_id):
+    products = load_products()
+    price = None
+    for p in products:
+        if p['id'] == product_id:
+            price = p['precio']
+            break
+    return price, datetime.datetime.now()
+
